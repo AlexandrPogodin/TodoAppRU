@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Todo App - {% block title %}Главная{% endblock %}</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+   <link rel="stylesheet" type="text/css" href="{% static 'todo/css/custom.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'todo/css/animate.css' %}">
+   <link rel="shortcut icon" type="image/png" href="{% static 'todo/favicon.ico' %}">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&amp;subset=cyrillic"
+      rel="stylesheet">
+</head>
+
+<body>
+
+   <body class="bg-gradient">
+      <nav class="navbar navbar-light">
+         <a class="navbar-brand" href="/">Todo App</a>
+         <div>
+            {% if user.is_authenticated %}
+            <span class="navbar-text mr-4">
+               Аккаунт: <b>{{ user.get_username }}</b>
+            </span>
+            <a class="btn btn-outline-dark" href="/accounts/logout">Выйти</a>
+            {% else %}
+            <a class="btn btn-outline-dark" href="/accounts/login">Войти</a>
+            {% endif %}
+         </div>
+
+      </nav>
+      {% block content %}
+      {% endblock content %}
+      {% block footer %}
+      <div class="container footer text-center">
+         <p>
+            Разработал <a href="https://github.com/AlexandrPogodin" target="_blank"><strong class="text-dark"><i
+                     class="fab fa-github"></i>Александр Погодин</strong></a>.
+         </p>
+         <a class="btn btn-circle btn-outline-dark" href="https://vk.me/awpogodin" target="_blank">
+            <span class="icon">
+               <i class="fab fa-vk"></i>
+            </span>
+         </a>
+         <a class="btn btn-circle btn-outline-dark" href="https://tg.guru/awpogodin" target="_blank">
+            <span class="icon">
+               <i class="fab fa-telegram-plane"></i>
+            </span>
+         </a>
+      </div>
+      {% endblock footer %}
+   </body>
+
+</html>

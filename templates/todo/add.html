@@ -1,0 +1,36 @@
+{% extends "layout/basic.html" %}
+
+{% block title %}Новая задача{% endblock %}
+
+{% block content %}
+<h2 class="text-center title animated fadeIn delay-1s">Новая задача.</h2><br>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-12 animated pulse">
+            <a href="/">
+                <p class="text-right text-primary">Назад</p>
+            </a>
+            <div class="card shadow">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <br>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            {% if user.is_authenticated %}
+                                <input type="hidden" name="author" value="{{ user.get_username }}">
+                            {% else %}
+                                <input type="hidden" name="author" value="default">
+                            {% endif %}
+                            <input type="submit" name="send" value="Add task" class="mt-2 btn btn-outline-dark">
+                        </form>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock  %}
